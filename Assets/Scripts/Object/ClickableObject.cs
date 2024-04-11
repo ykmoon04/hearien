@@ -31,13 +31,17 @@ public class ClickableObject : MonoBehaviour
     public void SetVolume(float change){
         if(!sound.isPlaying) {
             sound.Play();
-            bubble.SetActive(true);
         }
 
 
         sound.volume += change;
-        if(sound.volume <= 0f){
+        if(sound.volume==1f){
+            bubble.SetActive(true);
+        }else
             bubble.SetActive(false);
+
+
+        if(sound.volume <= 0f){
             sound.Stop();
         }
     }
