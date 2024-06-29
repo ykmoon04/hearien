@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,12 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
 {
     // 말풍선 O 소리 O
     private AudioSource sound;
-    [SerializeField] GameObject bubble;
+    GameObject bubble;
+
+
+    // 대사 임시
+    string dialog;
+
 
     private void Awake() {
         sound = GetComponent<AudioSource>();
@@ -49,12 +55,18 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
 
     #region show bubble
     public void ShowBubble(){
+        if(bubble == null){
+            string dialog = DialogManager.i.GetDialog(gameObject.name); 
+            bubble = BubbleManager.i.GetBubble(gameObject.transform, dialog);
+        }
+
         bubble.SetActive(true);
     }
 
     public void HideBubble(){
-        bubble.SetActive(false);
+        bubble?.SetActive(false);
     }
+
     #endregion
 
 
