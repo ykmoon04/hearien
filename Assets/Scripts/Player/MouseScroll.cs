@@ -31,7 +31,7 @@ public class MouseScroll : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray, ray, layerObject);
         if (hit.collider != null) 
         {
-            hit.collider.gameObject.GetComponent<ClickableObject>().SetVolume(change/100);
+            hit.collider.gameObject.GetComponent<IHearable>()?.SetVolume(change/100);
         }
     }
 }
