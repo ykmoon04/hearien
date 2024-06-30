@@ -26,9 +26,8 @@ public class MouseScroll : MonoBehaviour
     void Performed(InputAction.CallbackContext context)
     {
         float change = mouseScrollY.ReadValue<float>() / 10;
-        int layerObject = 8;
         Vector2 ray = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        RaycastHit2D hit = Physics2D.Raycast(ray, ray, layerObject);
+        RaycastHit2D hit = Physics2D.Raycast(ray, ray);
         if (hit.collider != null) 
         {
             hit.collider.gameObject.GetComponent<IHearable>()?.SetVolume(change/100);

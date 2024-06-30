@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CollectibleObject : ClickableObject
 {
-    // 수집품
+    // 수집품, 도감용?
+    
     public override void OnClick(){
-        Debug.Log("click");
+
     }
 }

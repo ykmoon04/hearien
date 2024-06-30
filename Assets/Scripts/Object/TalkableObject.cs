@@ -11,15 +11,11 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
     GameObject bubble;
 
 
-    // 대사 임시
-    string dialog;
-
-
     private void Awake() {
         sound = GetComponent<AudioSource>();
     }
 
-
+    // 드래그 중에는 안 바뀌게 해야함  -> 콜라이더 비활성화
     #region change cursor
     protected virtual void OnMouseEnter()
     {
@@ -30,7 +26,6 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
     {
         CursorManager.i.SetArrowCursor();
     }
-
     #endregion
 
 
@@ -56,7 +51,7 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
     #region show bubble
     public void ShowBubble(){
         if(bubble == null){
-            string dialog = DialogManager.i.GetDialog(gameObject.name); 
+            string dialog = TemporaryDataClass.GetDialog(gameObject.name); 
             bubble = BubbleManager.i.GetBubble(gameObject.transform, dialog);
         }
 
@@ -68,6 +63,4 @@ public class TalkableObject : MonoBehaviour, ITalkable, IHearable
     }
 
     #endregion
-
-
 }
